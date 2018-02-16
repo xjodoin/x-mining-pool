@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import me.jodoin.mining.pool.response.StratumResponse;
 
-public class GetworkRequest extends StratumRequest {
+public class MiningSuggestDifficultyRequest extends StratumRequest {
 
 	@JsonIgnore
-	public String getData() {
+	public Double getSuggestedDifficulty() {
 		return getParam(0);
 	}
 
@@ -15,5 +15,4 @@ public class GetworkRequest extends StratumRequest {
 	public StratumResponse accept(StratumRequestVisitor visitor) {
 		return visitor.visit(this);
 	}
-
 }

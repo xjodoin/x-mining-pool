@@ -6,6 +6,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import me.jodoin.mining.pool.request.StratumRequest;
+import me.jodoin.mining.pool.request.StratumRequestVisitor;
 
 public class StratumServerHandler extends SimpleChannelInboundHandler<StratumRequest> {
 

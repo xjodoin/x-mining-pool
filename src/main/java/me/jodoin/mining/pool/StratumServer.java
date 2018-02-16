@@ -12,10 +12,12 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.json.JsonObjectDecoder;
 import io.netty.handler.codec.string.LineEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import me.jodoin.mining.pool.request.StratumRequest;
+import me.jodoin.mining.pool.request.StratumRequestVisitor;
 import me.jodoin.mining.pool.response.StratumResponse;
 
 /**
@@ -45,7 +47,7 @@ public class StratumServer implements Runnable {
 							@Override
 							public void initChannel(SocketChannel ch) throws Exception {
 								ChannelPipeline pipeline = ch.pipeline();
-								pipeline.addLast("line", new LineBasedFrameDecoder(200));
+								pipeline.addLast("json", new JsonObjectDecoder());
 								pipeline.addLast("jackson_decoder",
 										new JacksonDecoder<>(objectMapper, StratumRequest.class));
 								pipeline.addLast("jackson_encoder",
