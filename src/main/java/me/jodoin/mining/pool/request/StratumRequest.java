@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import me.jodoin.mining.pool.StratumRequestVisitor;
 import me.jodoin.mining.pool.response.StratumResponse;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "method", visible = false)
@@ -41,6 +42,6 @@ public abstract class StratumRequest {
 		return (T) params.get(index);
 	}
 
-	public abstract StratumResponse accept(StratumRequestVisitor visitor);
+	public abstract <T> T accept(StratumRequestVisitor<T> visitor);
 
 }

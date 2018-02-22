@@ -11,13 +11,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.json.JsonObjectDecoder;
-import io.netty.handler.codec.string.LineEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import me.jodoin.mining.pool.request.StratumRequest;
-import me.jodoin.mining.pool.request.StratumRequestVisitor;
 import me.jodoin.mining.pool.response.StratumResponse;
 
 /**
@@ -28,9 +25,9 @@ public class StratumServer implements Runnable {
 	private int port;
 	private ChannelFuture channel;
 	private ObjectMapper objectMapper = new ObjectMapper();
-	private StratumRequestVisitor visitor;
+	private StratumRequestVisitorFactory<?> visitor;
 
-	public StratumServer(int port, StratumRequestVisitor visitor) {
+	public StratumServer(int port, StratumRequestVisitorFactory<?> visitor) {
 		this.port = port;
 		this.visitor = visitor;
 	}
@@ -83,7 +80,6 @@ public class StratumServer implements Runnable {
 		} else {
 			port = 8080;
 		}
-		// FIXME
-		new StratumServer(port, null).run();
+		new StratumServer(port, new LoggerStratumRequestVisitorFactory<>(new ObjectMapper(), new StratumRequestHandlerFactory())).run();
 	}
 }

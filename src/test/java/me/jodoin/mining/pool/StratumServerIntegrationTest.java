@@ -14,7 +14,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import me.jodoin.mining.pool.request.GetworkRequest;
-import me.jodoin.mining.pool.request.StratumRequestVisitor;
+import me.jodoin.mining.pool.response.GetworkResponse;
 import me.jodoin.mining.pool.response.StratumResponse;
 
 public class StratumServerIntegrationTest {
@@ -22,7 +22,7 @@ public class StratumServerIntegrationTest {
 	@Test
 	public void test() throws UnknownHostException, IOException, InterruptedException {
 		StratumRequestVisitor requestVisitor = mock(StratumRequestVisitor.class);
-		when(requestVisitor.visit(any(GetworkRequest.class))).thenReturn(new StratumResponse());
+		when(requestVisitor.visit(any(GetworkRequest.class))).thenReturn(new GetworkResponse());
 		
 		StratumServer stratumServer = new StratumServer(8080, requestVisitor);
 

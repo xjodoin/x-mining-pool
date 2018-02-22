@@ -1,0 +1,36 @@
+{
+   "error":null,
+   "id":1,
+   "result":[
+      [
+         "mining.notify",
+         "ae6812eb4cd7735a302a8a9dd95cf71f"
+      ],
+      "f8001aad",
+      4
+   ]
+}
+{
+   "params":[
+      4
+   ],
+   "id":null,
+   "method":"mining.set_difficulty"
+}
+{
+   "params":[
+      "6d7e",
+      "856bb928e97b1d768bd8436f7bd0cbfb123011787a74e5c6b1d0b3bc0ce42630",
+      "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff27037ebf0c062f503253482f04919d8c5a08",
+      "0d2f6e6f64655374726174756d2f000000000100f2052a010000001976a914d449ce62fa5554b19f621bfc801bcb5f06d0d22188ac00000000",
+      [
+         "61bfb9c6e7a49041c43737cf07f5a7994fc349b327608fa0800a958270ae3196"
+      ],
+      "00000002",
+      "0206e500",
+      "5a8c9e33",
+      true
+   ],
+   "id":null,
+   "method":"mining.notify"
+}

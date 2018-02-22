@@ -1,18 +1,21 @@
 package me.jodoin.mining.pool.response;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.util.concurrent.atomic.AtomicLong;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "method", visible = false)
-public class StratumResponse {
+public abstract class StratumResponse<T> {
 
-	private String test = "toto";
-
-	public String getTest() {
-		return test;
+	private static final AtomicLong counter = new AtomicLong(1);
+	
+	private Long id = counter.getAndIncrement();
+	
+	public Long getId() {
+		return id;
 	}
 
-	public void setTest(String test) {
-		this.test = test;
+	public void setId(Long id) {
+		this.id = id;
 	}
+	
+	public abstract T getResult();
 	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import me.jodoin.mining.pool.StratumRequestVisitor;
 import me.jodoin.mining.pool.response.StratumResponse;
 
 public class MiningSubmitRequest extends StratumRequest {
@@ -36,7 +37,7 @@ public class MiningSubmitRequest extends StratumRequest {
 	}
 	
 	@Override
-	public StratumResponse accept(StratumRequestVisitor visitor) {
+	public <T> T accept(StratumRequestVisitor<T> visitor) {
 		return visitor.visit(this);
 	}
 
